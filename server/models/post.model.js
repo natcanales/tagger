@@ -7,12 +7,20 @@ const postSchema = new Schema({
         required: [true, 'Debes introducir un título de post']
     },
 
-    body: String,
+    body: {
+        type: String,
+        required: [true, 'Debes introducir contenido']
+    },
 
     tags: [{
         type: Schema.Types.ObjectId,
         ref: "Tag"
-    }]
+    }],
+
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }
 
 }, {
     timestamps: true

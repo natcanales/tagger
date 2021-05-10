@@ -23,7 +23,7 @@ const userSchema = new Schema({
         required: [true, 'Debes introducir una contraseña']
     },
 
-    birthdate: {
+    birth: {
         type: Date
         // min: 16 (check at back)
     },
