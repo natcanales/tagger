@@ -10,12 +10,17 @@ const userSchema = new Schema({
     username: {
         type: String,
         unique: true,
-        require: [true, 'Debes introducir un nombre de usuario']
+        required: [true, 'Debes introducir un nombre de usuario']
     },
+
+    image: {
+        type: String,
+    },
+
     email: {
         type: String,
         unique: true,
-        require: [true, 'Debes indicar un mail']
+        required: [true, 'Debes indicar un mail']
     },
 
     password: {
