@@ -9,7 +9,7 @@ const User = require('../models/user.model')
 // Signup (post)
 router.post('/new-user', (req, res) => {
 
-    const { username, pwd, displayName, email } = req.body
+    const { username, pwd, displayName, email, date } = req.body
 
     User
         .findOne({ username })
@@ -24,7 +24,7 @@ router.post('/new-user', (req, res) => {
             const hashPass = bcrypt.hashSync(pwd, salt)
 
             User
-                .create({ username, password: hashPass, displayName, email })
+                .create({ username, password: hashPass, displayName, email, date })
                 .then(() => res.json({ code: 200, message: 'User created' }))
                 .catch(err => res.status(500).json({ code: 500, message: 'DB error while creating user', err }))
         })
@@ -55,6 +55,12 @@ router.post('/login', (req, res) => {
 // Logout (get)
 router.get('/logout', (req, res) => {
     req.session.destroy((err) => res.json({ message: 'Logout successful' }));
+})
+
+
+// Check if user is logged (get)
+router.get('/isLoggedIn', (req, res) => {
+    req.session.currentUser ? res.json(req.session.currentUser) : res.status(401).json({ code: 401, message: 'Unauthorized' })
 })
 
 

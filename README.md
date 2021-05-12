@@ -12,8 +12,8 @@
 | Post            | / auth / login                   | Crear cookie                 |
 | Post            | / auth / logout                  | Romper cookie                |
 | Post            | / post / new                     | Crear posts                  |
-| Get             | / post / edit / :postId          | Editar post                  |
-| Put             | / post / edit / :postId          | Guardar edición del post     |
+| Get             | / post / :postId                 | Obtener info post            |
+| Put             | / post / :postId                 | Guardar edición del post     |
 | Get             | / user / current-user            | Perfil de usuario loggeado   |
 | Get             | / user / :username               | Perfil de otro usuario       |
 | Post            | / user / add-fav-user / :username| Añadir user a favorito       |
