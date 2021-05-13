@@ -7,7 +7,7 @@ const PostCard = ({ title, body, author }) => {
             <Card>
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">{author}</Card.Subtitle>
+                    <Card.Subtitle className="mb-2 text-muted">{author.displayName}</Card.Subtitle>
                     <Card.Text>{body}</Card.Text>
                 </Card.Body>
             </Card>

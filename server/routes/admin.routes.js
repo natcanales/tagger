@@ -20,11 +20,11 @@ router.post('/new-tag', isLoggedIn, checkRoles('ADMIN'), (req, res, next) => {
 
 
 // User list
-router.get('/users-list', (req, res, next) => {
+router.get('/users-list', isLoggedIn, (req, res, next) => {
 
     User
         .find()
-        .then(allUsers => res.json({ allUsers }))
+        .then(allUsers => res.json(allUsers))
         .catch(err => res.status(500).json({ status: 500, message: "Error de servidor" }))
 })
 

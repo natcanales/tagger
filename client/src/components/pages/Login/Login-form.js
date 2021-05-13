@@ -26,8 +26,7 @@ class LoginForm extends Component {
             .login(this.state)
             .then(response => {
                 this.props.storeUser(response.data)
-                console.log("Loggeado!")
-                // this.props.history.push('/home')
+                this.props.history.push('/')
             })
             .catch(err => console.log(err))
     }

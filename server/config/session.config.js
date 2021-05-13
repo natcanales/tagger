@@ -13,7 +13,7 @@ module.exports = app => {
                 maxAge: 600000
             },
             store: MongoStore.create({
-                mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/tagger'
+                mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/basicAuth'
             })
         })
     );

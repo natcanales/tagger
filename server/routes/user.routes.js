@@ -6,12 +6,12 @@ const Tag = require('../models/tag.model')
 
 const mongoose = require('mongoose')
 
-const { isLoggedIn, checkRoles } = require('./../middlewares')
+const { isLoggedIn } = require('./../middlewares')
 
 
 // Own user profile
 router.get('/current-user', isLoggedIn, (req, res) => {
-    res.json({ user: req.session.currentUser })
+    res.json(req.session.currentUser)
 })
 
 
