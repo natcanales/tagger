@@ -1,8 +1,9 @@
 import { Component } from 'react'
 import PostService from './../../../service/post.service'
 import PostCard from './PostCard'
+import { Link } from 'react-router-dom'
 
-import { Row } from 'react-bootstrap'
+import { Row, Spinner } from 'react-bootstrap'
 
 class PostsList extends Component {
 
@@ -32,9 +33,12 @@ class PostsList extends Component {
         return (
             !posts
                 ?
-                <h1>CARGANDO...</h1>
+                <Spinner animation="border" role="status">
+                    <span className="sr-only"></span>
+                </Spinner>
                 :
                 <>
+                    <Link to="/new-post">Crear nuevo post</Link>
                     <Row>
                         {posts.map(elm => <PostCard key={elm._id} {...elm} />)}
                     </Row>

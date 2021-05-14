@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { Container } from 'react-bootstrap'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "./App.css"
@@ -6,7 +7,7 @@ import "./App.css"
 import AuthServices from './../service/auth.service'
 import Routes from './routes/Routes'
 import Navigation from './layout/Navigation/Navigation'
-import { Link } from 'react-router-dom'
+import Footer from './layout/Footer/Footer'
 
 class App extends Component {
   constructor() {
@@ -34,12 +35,10 @@ class App extends Component {
     return (
       <div className="App" >
         <Navigation storeUser={user => this.storeUser(user)} loggedUser={this.state.loggedUser} />
-        <main>
-          <Link to="/posts" ><p>posts</p></Link>
-          <Link to="/users-list" ><p>users list</p></Link>
-          <Link to="/my-profile" ><p>users profile</p></Link>
+        <Container>
           <Routes storeUser={user => this.storeUser(user)} loggedUser={this.state.loggedUser} />
-        </main>
+        </Container>
+        <Footer />
       </div>)
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import UserService from '../../../service/user.service'
-import { Container } from 'react-bootstrap'
+import { Container, Spinner } from 'react-bootstrap'
 import UserFormat from './User-format'
 
 class UserProfile extends Component {
@@ -24,7 +24,18 @@ class UserProfile extends Component {
     render() {
         return (
             <Container>
-                {!this.state.user ? <h1>Cargando...</h1> : <UserFormat {...this.state.user} />}
+                {
+                    !this.state.user ?
+                        <Spinner animation="border" role="status">
+                            <span className="sr-only"></span>
+                        </Spinner>
+                        :
+                        <>
+                            <h1>Perfil de {this.state.user.username}</h1>
+                            <hr />
+                            <UserFormat {...this.state.user} />
+                        </>
+                }
             </Container>
         )
     }
