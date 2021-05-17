@@ -2,7 +2,7 @@ import { Container } from 'react-bootstrap'
 
 import UsersList from './Users-list'
 
-const Posts = ({ loggedUser }) => {
+const Users = ({ loggedUser }) => {
     return (
         <Container>
             <h1>Listado de users</h1>
@@ -12,4 +12,4 @@ const Posts = ({ loggedUser }) => {
     )
 }
 
-export default Posts
+export default Users

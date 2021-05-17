@@ -1,54 +1,66 @@
-// import { Component } from 'react'
-// import { Button } from 'react-bootstrap'
-// import UsersService from '../../../service/user.service'
-// import PostService from '../../../service/post.service'
-// import { Editor } from 'react-draft-wysiwyg'
-// import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
-
-// class NewPost extends Component {
-
-//     constructor() {
-//         super()
-//         this.state = {
-//             post: {
-//                 title: '',
-//                 body: ''
-//             }
-//         }
-
-//         this.userService = new UsersService()
-//         this.postService = new PostService()
-//     }
+import { Component } from 'react'
+import { Button, Form } from 'react-bootstrap'
+import UsersService from '../../../service/user.service'
+import PostService from '../../../service/post.service'
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
+import CustomEditor from './CustomEditor'
 
 
-//     handleInputChange(e) {
-//         const { name, value } = e.target
-//         this.setState({ post: { ...this.state.post, [name]: value } })
-//     }
+// https://blog.logrocket.com/building-rich-text-editors-in-react-using-draft-js-and-react-draft-wysiwyg/
+// https://stackoverflow.com/questions/63015073/how-to-customize-the-style-for-react-draft-wysiwyg
+class NewPost extends Component {
 
+    constructor() {
+        super()
+        this.state = {
+            post: {
+                title: '',
+                body: ''
+            }
+        }
 
-//     handleSubmit() {
-//         this.postService
-//             .newPost(this.state.post)
-//             .then(() => {
-//                 this.props.refreshPosts()
-//             })
-//             .catch(err => console.log(err))
-//     }
+        this.userService = new UsersService()
+        this.postService = new PostService()
+    }
 
+    updateState(postData) {
+        let stateCopy = { ...this.state.post }
+        stateCopy.body = postData
+        this.setState({ post: stateCopy })
+    }
 
-//     render() {
-//         return (
-//             <>
-//                 <Editor
-//                     toolbarClassName="toolbarClassName"
-//                     wrapperClassName="wrapperClassName"
-//                     editorClassName="editorClassName"
-//                 />
-//                 <Button variant="dark" type="submit" refreshPosts={() => this.loadPosts()}>Publicar post</Button>
-//             </>
-//         )
-//     }
-// }
+    handleTitleChange(e) {
+        let stateCopy = { ...this.state.post }
+        const value = e.target.value
+        stateCopy.title = value
+        this.setState({ post: stateCopy })
+    }
 
-// export default NewPost
+    handleSubmit(e) {
+        e.preventDefault()
+        this.postService
+            .newPost(this.state.post)
+            .then(() => {
+                alert('Guardado')
+            })
+            .catch(err => console.log(err))
+    }
+
+    render() {
+        return (
+            <>
+                <Form onSubmit={e => this.handleSubmit(e)}>
+                    <Form.Group controlId="title">
+                        <Form.Label>Título</Form.Label>
+                        <Form.Control type="text" value={this.state.post.title} onChange={e => this.handleTitleChange(e)} name="title" />
+                    </Form.Group>
+
+                    <CustomEditor updateState={data => this.updateState(data)} />
+                    <Button variant="dark" type="submit" >Publicar post</Button>
+                </Form>
+            </>
+        )
+    }
+}
+
+export default NewPost

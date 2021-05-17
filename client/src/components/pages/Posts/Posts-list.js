@@ -15,7 +15,6 @@ class PostsList extends Component {
         this.postService = new PostService()
     }
 
-
     componentDidMount() {
         this.loadPosts()
     }
