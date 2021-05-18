@@ -1,0 +1,18 @@
+.App {
+    background-color: transparent;
+}
+
+.padded {
+    padding: 5em 0;
+}
+
+.t-bgBtn {
+    margin: 10px auto;
+}
+
+.t-bgBtn,
+.t-bgBtn:hover,
+.t-bgBtn:focus {
+    background-color: rgb(185, 114, 47);
+    border: transparent;
+}

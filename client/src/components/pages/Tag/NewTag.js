@@ -49,7 +49,7 @@ class NewTag extends Component {
                     <Form.Control type="text" value={this.state.description} onChange={e => this.handleInputChange(e)} name="description" />
                 </Form.Group>
 
-                <Button variant="dark" style={{ width: '100%' }} type="submit">Crear tag</Button>
+                <Button className="t-bgBtn" style={{ width: '100%' }} type="submit">Crear tag</Button>
 
             </Form>
         )

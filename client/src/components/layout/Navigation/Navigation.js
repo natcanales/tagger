@@ -1,6 +1,7 @@
-import { Navbar, Nav } from 'react-bootstrap'
+import { Navbar, NavDropdown, Nav } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import './Navigation.css'
 
 import AuthService from './../../../service/auth.service'
 
@@ -14,13 +15,21 @@ const Navigation = ({ loggedUser, storeUser }) => {
             .logout()
             .then(() => {
                 storeUser(undefined)
-                console.log("Deslogueao!")
             })
             .catch(err => console.log(err))
     }
 
     return (
-        <Navbar bg="dark" variant="dark" className="justify-content-between">
+        <Navbar variant="dark" className="justify-content-around navigation">
+            <Navbar.Brand href="/">
+                <img
+                    src="/white-logo.png"
+                    width="30"
+                    height="30"
+                    className="d-inline-block align-top t-logo"
+                    alt="tagger logo"
+                />
+            </Navbar.Brand>
             <Nav className="mr-auto">
                 {
                     !loggedUser ?
@@ -29,12 +38,13 @@ const Navigation = ({ loggedUser, storeUser }) => {
                         </>
                         :
                         <>
-                            <Link to="/posts" className="nav-link"><p>Posts</p></Link>
-                            <Link to="/users" className="nav-link"><p>Users</p></Link>
-                            <Link to="/tags" className="nav-link"><p>Tags</p></Link>
-                            <Link to="/new-post" className="nav-link"><p>Post nuevo</p></Link>
-                            <span onClick={() => logout()} className="nav-link">Cerrar sesión</span>
-                            <Link to="/my-profile" className="nav-link"><p>| Hola, {loggedUser.username}</p></Link>
+                            <Link to="/my-profile" className="nav-link t-profileBtn"><p> | Hola, {loggedUser.username} | </p></Link>
+
+                            <NavDropdown title="Menú" className="t-link">
+                                <Link to="/posts" className="nav-link"><p>Posts</p></Link>
+                                <Link to="/new-post" className="nav-link"><p>Post nuevo</p></Link>
+                                <span onClick={() => logout()} className="nav-link">Cerrar sesión</span>
+                            </NavDropdown>
                         </>
                 }
             </Nav>

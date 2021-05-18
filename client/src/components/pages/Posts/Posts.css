@@ -1,0 +1,48 @@
+.posts-list {
+    overflow-y: auto;
+}
+
+.no-decor,
+.no-decor:hover {
+    text-decoration: none;
+    color: black
+}
+
+.t-bgColor:hover {
+    transition: background-color 0.2s ease-in;
+    background-color: rgb(240, 240, 240);
+}
+
+.t-bgColor:not(:hover) {
+    transition: background-color 0.2s ease-in;
+}
+
+.big {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.lat-padded {
+    padding: 1em 3em;
+}
+
+.marged {
+    margin: 10px 0;
+}
+
+.right-marged {
+    margin-right: 10px;
+}
+
+.t-italic {
+    font-style: italic;
+}
+
+.t-postEditor {
+    height: 50vh;
+    border: 1px solid grey;
+    border-radius: 10px;
+    overflow-y: auto;
+    background-color: white;
+    padding: 10px 20px;
+}

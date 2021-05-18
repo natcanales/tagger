@@ -1,19 +1,18 @@
-import { Card, Col } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const PostCard = ({ _id, title, author }) => {
+const PostCard = ({ _id, title, author, body }) => {
 
     return (
-        <Col md={3}>
-            <Card>
-                <Link to={`/posts/${_id}`}>
-                    <Card.Body>
-                        <Card.Title>{title}</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">{author.displayName}</Card.Subtitle>
-                    </Card.Body>
-                </Link>
+        <Link to={`/posts/${_id}`} className="no-decor">
+            <Card className="marged t-bgColor">
+                <Card.Body className="lat-padded">
+                    <Card.Title className="big">{title}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">{author.displayName}</Card.Subtitle>
+                    <Card.Text><div className="t-italic" dangerouslySetInnerHTML={{ __html: body.slice(0, 100).replace(/(<([^>]+)>)/ig, '') }} /></Card.Text>
+                </Card.Body>
             </Card>
-        </Col>
+        </Link>
     )
 }
 

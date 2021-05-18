@@ -2,6 +2,7 @@ import { Component } from 'react'
 import UserService from '../../../service/user.service'
 import { Container, Spinner } from 'react-bootstrap'
 import UserFormat from './User-format'
+import AdminPage from '../Admin/Admin-page'
 
 class UserProfile extends Component {
 
@@ -34,6 +35,8 @@ class UserProfile extends Component {
                             <h1>Perfil de {this.state.user.username}</h1>
                             <hr />
                             <UserFormat {...this.state.user} />
+                            <hr />
+                            {this.state.user.role === "ADMIN" ? <AdminPage /> : null}
                         </>
                 }
             </Container>

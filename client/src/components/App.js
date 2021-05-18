@@ -8,6 +8,7 @@ import AuthServices from './../service/auth.service'
 import Routes from './routes/Routes'
 import Navigation from './layout/Navigation/Navigation'
 import Footer from './layout/Footer/Footer'
+import ParticlesBackground from './ParticlesBackground'
 
 class App extends Component {
   constructor() {
@@ -35,8 +36,9 @@ class App extends Component {
     return (
       <div className="App" >
         <Navigation storeUser={user => this.storeUser(user)} loggedUser={this.state.loggedUser} />
-        <Container>
+        <Container className="padded">
           <Routes storeUser={user => this.storeUser(user)} loggedUser={this.state.loggedUser} />
+          <ParticlesBackground />
         </Container>
         <Footer />
       </div>)

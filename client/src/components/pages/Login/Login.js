@@ -11,7 +11,7 @@ const Login = ({ storeUser, history }) => {
                     <hr />
                     <LoginForm storeUser={storeUser} history={history} />
                     <hr />
-                    <Link to="/signup" className="btn btn-dark">¿Aún no eres un tagger? ¡Únete!</Link>
+                    <Link to="/signup" className="btn t-bgBtn btn-primary">¿Aún no eres un tagger? ¡Únete!</Link>
                 </Col>
             </Row>
         </Container>

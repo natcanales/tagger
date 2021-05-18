@@ -2,8 +2,9 @@ import { Component } from 'react'
 import PostService from './../../../service/post.service'
 import PostCard from './PostCard'
 import { Link } from 'react-router-dom'
+import './Posts.css'
 
-import { Row, Spinner } from 'react-bootstrap'
+import { Spinner } from 'react-bootstrap'
 
 class PostsList extends Component {
 
@@ -37,10 +38,10 @@ class PostsList extends Component {
                 </Spinner>
                 :
                 <>
-                    <Link to="/new-post">Crear nuevo post</Link>
-                    <Row>
+                    <Link to="/new-post" className="t-bgBtn btn btn-primary">Crear nuevo post</Link>
+                    <div className="posts-list">
                         {posts.map(elm => <PostCard key={elm._id} {...elm} />)}
-                    </Row>
+                    </div>
                 </>
 
         )

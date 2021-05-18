@@ -41,7 +41,7 @@ class NewComment extends Component {
                     <Form.Control type="text" value={this.state.body} onChange={e => this.handleInputChange(e)} name="body" />
                 </Form.Group>
 
-                <Button variant="dark" style={{ width: '100%' }} type="submit">Publicar comentario</Button>
+                <Button className="t-bgBtn" style={{ width: '100%' }} type="submit">Publicar comentario</Button>
             </Form>
         )
     }

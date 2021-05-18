@@ -34,30 +34,45 @@ class CommentList extends Component {
 
     render() {
         const { comments } = this.state
-
-        return (
-            !comments ?
-                (<Spinner animation="border" role="status">
-                    <span className="sr-only"></span>
-                </Spinner>)
-                :
-                !comments.length ?
-                    (<p>Este post no tiene comentarios aún</p>)
-                    :
-                    (<>
-                        {<Button onClick={() => this.setState({ showModal: true })} variant="dark" size="sm" style={{ marginBottom: '20px' }}>Añadir un comentario</Button>}
-                        <Row>
-                            {comments.map(elm => <CommentCard key={elm._id} {...elm} />)}
-                        </Row>
-
+        const renderModal = () => {
+            if (comments) {
+                return (
+                    <>
+                        <Button onClick={() => this.setState({ showModal: true })} className="t-bgBtn" size="sm" style={{ marginBottom: '20px' }}>Añadir un comentario</Button>
                         <Modal show={this.state.showModal} onHide={() => this.setState({ showModal: false })}>
                             <Modal.Header> <Modal.Title>Nuevo comentario</Modal.Title> </Modal.Header>
                             <Modal.Body>
                                 <NewComment loggedUser={this.props.loggedUser} closeModal={() => this.setState({ showModal: false })} refreshComments={() => this.loadComments()} />
                             </Modal.Body>
                         </Modal>
-                    </>)
+                    </>
+                )
+            } else {
+                return (
+                    <Spinner animation="border" role="status">
+                        <span className="sr-only"></span>
+                    </Spinner>
+                )
+            }
+        }
 
+        const renderComments = () => {
+            if (comments && !comments.length) {
+                return (<p>Este post no tiene comentarios aún</p>)
+            } else if (comments) {
+                return (
+                    <Row>
+                        {comments.map(elm => <CommentCard key={elm._id} {...elm} />)}
+                    </Row>
+                )
+            }
+        }
+
+        return (
+            <>
+                {renderModal()}
+                {renderComments()}
+            </>
         )
     }
 }

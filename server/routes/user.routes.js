@@ -21,14 +21,8 @@ router.get('/:username', isLoggedIn, (req, res) => {
 
     User
         .find({ username })
-        .then(user => {
-            if (user) {
-                res.json(user)
-            } else {
-                res.status(404).json({ status: 404, message: "Usuario no encontrado" })
-            }
-        })
-        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor" }))
+        .then(user => user ? res.json(user) : res.status(404).json({ status: 404, message: "Usuario no encontrado" }))
+        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor" }, err))
 })
 
 
@@ -40,23 +34,23 @@ router.put('/add-fav-user/:username', isLoggedIn, (req, res) => {
         .findOne({ username })
         .then(user => {
             if (user) {
-                let userId = new mongoose.mongo.ObjectId(user._id)
+                let userId = new objectId(user._id)
 
-                User
+                return User
                     .findByIdAndUpdate(
                         req.session.currentUser._id,
                         { $push: { favUsers: userId } },
                         { new: true }
                     )
-                    .then(user => {
-                        req.session.currentUser = user
-                        res.json({ message: "Añadido a favoritos" })
-                    })
             } else {
                 res.status(404).json({ status: 404, message: "Usuario no encontrado" })
             }
         })
-        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor" }))
+        .then(user => {
+            req.session.currentUser = user
+            res.json({ message: "Añadido a favoritos" })
+        })
+        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor" }, err))
 })
 
 
@@ -68,7 +62,7 @@ router.put('/add-fav-tag/:tagname', isLoggedIn, (req, res) => {
         .findOne({ name })
         .then(tag => {
             if (tag) {
-                let tagId = new mongoose.mongo.ObjectId(tag._id)
+                let tagId = new objectId(tag._id)
 
                 User
                     .findByIdAndUpdate(
@@ -84,7 +78,7 @@ router.put('/add-fav-tag/:tagname', isLoggedIn, (req, res) => {
                 res.status(404).json({ status: 404, message: "Usuario no encontrado" })
             }
         })
-        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor" }))
+        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor" }, err))
 })
 
 

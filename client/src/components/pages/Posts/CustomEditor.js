@@ -25,13 +25,15 @@ class CustomEditor extends Component {
         const { editorState } = this.state
 
         return (
-            <Editor
-                toolbarClassName="toolbarClassName"
-                wrapperClassName="wrapperClassName"
-                editorClassName="editorClassName"
-                editorState={editorState}
-                onEditorStateChange={state => this.onEditorStateChange(state)}
-            />
+            <div>
+                <Editor
+                    toolbarClassName="toolbarClassName"
+                    wrapperClassName="wrapperClassName"
+                    editorClassName="t-postEditor"
+                    editorState={editorState}
+                    onEditorStateChange={state => this.onEditorStateChange(state)}
+                />
+            </div>
         )
     }
 }

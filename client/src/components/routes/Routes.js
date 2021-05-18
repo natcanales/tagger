@@ -17,7 +17,7 @@ const Routes = ({ storeUser, loggedUser }) => {
             (<>
                 <PublicRoute exact path="/login" loggedUser={loggedUser} storeUser={storeUser} component={Login} />
                 <PublicRoute exact path="/signup" loggedUser={loggedUser} storeUser={storeUser} component={Signup} />
-                <PrivateRoute exact path="/posts" loggedUser={loggedUser} hasPermission={true} component={Posts} />
+                <PrivateRoute exact path="/" loggedUser={loggedUser} hasPermission={true} component={Posts} />
                 <PrivateRoute exact path="/users" loggedUser={loggedUser} hasPermission={loggedUser && loggedUser.role === "ADMIN"} component={Users} />
                 <PrivateRoute exact path="/my-profile" loggedUser={loggedUser} hasPermission={true} component={UserProfile} />
                 <PrivateRoute exact path="/tags" loggedUser={loggedUser} hasPermission={loggedUser && loggedUser.role === "ADMIN"} component={Tags} />

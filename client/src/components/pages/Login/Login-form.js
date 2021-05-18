@@ -46,7 +46,7 @@ class LoginForm extends Component {
                     <Form.Control type="password" value={this.state.pwd} onChange={e => this.handleInputChange(e)} name="pwd" />
                 </Form.Group>
 
-                <Button variant="dark" style={{ width: '100%', marginTop: '20px' }} type="submit">Iniciar sesión</Button>
+                <Button className="t-bgBtn" style={{ width: '100%', marginTop: '20px' }} type="submit">Iniciar sesión</Button>
             </Form>
         )
     }

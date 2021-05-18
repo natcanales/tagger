@@ -1,0 +1,31 @@
+.logoutBtn {
+    cursor: pointer;
+}
+
+.navigation {
+    background: #40E0D0; 
+    background: -webkit-linear-gradient(to right, #FF0080, #FF8C00, #40E0D0);
+    background: linear-gradient(to right, #FF0080, #FF8C00, #40E0D0);
+    position: fixed;
+    z-index: 3;
+    width: 100vw;
+}
+
+.t-profileBtn,
+.navigation .t-link {
+    font-size: 1.2em;
+    color: white;
+    font-weight: bolder;
+}
+
+.navigation .t-link .dropdown-menu .nav-link {
+    background-color: transparent;
+    color: #449462;
+    font-weight: bolder;
+    font-size: 1em;
+}
+
+.t-logo {
+    width: 50px;
+    height: auto;
+}

@@ -54,9 +54,10 @@ class NewPost extends Component {
                         <Form.Label>Título</Form.Label>
                         <Form.Control type="text" value={this.state.post.title} onChange={e => this.handleTitleChange(e)} name="title" />
                     </Form.Group>
+                    <br />
 
                     <CustomEditor updateState={data => this.updateState(data)} />
-                    <Button variant="dark" type="submit" >Publicar post</Button>
+                    <Button className="t-bgBtn" type="submit" >Publicar post</Button>
                 </Form>
             </>
         )

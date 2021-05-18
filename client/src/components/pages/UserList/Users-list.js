@@ -2,7 +2,7 @@ import { Component } from 'react'
 import AdminService from './../../../service/admin.service'
 import UserCard from './UserCard'
 
-import { Row, Spinner } from 'react-bootstrap'
+import { Row, Spinner, Button } from 'react-bootstrap'
 
 class UsersList extends Component {
 
@@ -23,7 +23,6 @@ class UsersList extends Component {
         this.adminService
             .getAllUsers()
             .then(response => {
-                console.log(response)
                 this.setState({ users: response.data })
             })
             .catch(err => console.log(err))
@@ -41,8 +40,9 @@ class UsersList extends Component {
                 :
                 <>
                     <Row>
-                        {users.map(elm => <UserCard key={elm._id} {...elm} />)}
+                        {users.map(elm => <UserCard key={elm._id} user={{ ...elm }} refreshUsers={() => this.loadUsers()} />)}
                     </Row>
+                    {<Button onClick={() => this.props.history.push("/my-profile")} className="goBackBtn" size="sm" style={{ marginBottom: '20px' }}>Volver</Button>}
                 </>
 
         )

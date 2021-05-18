@@ -1,0 +1,7 @@
+.goBackBtn,
+.goBackBtn:hover,
+.editBtn,
+.editBtn:hover {
+    float: right;
+    background-color: teal;
+}

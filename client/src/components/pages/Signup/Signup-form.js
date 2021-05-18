@@ -63,7 +63,7 @@ class SignupForm extends Component {
                     <Form.Control type="date" value={this.state.birthdate} onChange={e => this.handleInputChange(e)} name="birthdate" />
                 </Form.Group>
 
-                <Button variant="dark" style={{ width: '100%', marginTop: '20px' }} type="submit">¡Vamos allá!</Button>
+                <Button className="t-bgBtn" style={{ width: '100%', marginTop: '20px' }} type="submit">¡Vamos allá!</Button>
             </Form>
         )
     }

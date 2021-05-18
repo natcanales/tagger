@@ -26,9 +26,9 @@ router.post('/new-user', (req, res) => {
             User
                 .create({ username, password: hashPass, displayName, email, date })
                 .then(() => res.json({ code: 200, message: 'User created' }))
-                .catch(err => res.status(500).json({ code: 500, message: 'DB error while creating user', err }))
+                .catch(err => res.status(500).json({ code: 500, message: 'DB error while creating user' }, err))
         })
-        .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user', err }))
+        .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user' }, err))
 })
 
 
@@ -48,13 +48,13 @@ router.post('/login', (req, res) => {
 
             res.json(req.session.currentUser)
         })
-        .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user', err }))
+        .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user' }, err))
 })
 
 
 // Logout (get)
 router.get('/logout', (req, res) => {
-    req.session.destroy((err) => res.json({ message: 'Logout successful' }));
+    req.session.destroy(() => res.json({ message: 'Logout successful' }));
 })
 
 
