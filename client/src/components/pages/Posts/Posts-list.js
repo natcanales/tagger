@@ -38,9 +38,12 @@ class PostsList extends Component {
                 </Spinner>
                 :
                 <>
-                    <Link to="/new-post" className="t-bgBtn btn btn-primary">Crear nuevo post</Link>
+                    {this.props.loggedUser.role === "USER" ?
+                        <Link to="/edit-post/new" className="t-bgBtn btn btn-primary">Crear nuevo post</Link>
+                        : null}
+
                     <div className="posts-list">
-                        {posts.map(elm => <PostCard key={elm._id} {...elm} />)}
+                        {posts.map(elm => <PostCard key={elm._id} {...elm} authorIsUser={this.props.loggedUser._id === elm.author._id} history={this.props.history} />)}
                     </div>
                 </>
 

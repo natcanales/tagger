@@ -4,7 +4,7 @@ module.exports = {
             next()
         }
         else {
-            res.json({ status: 403, message: "No admin, caca" })
+            res.json({ status: 403, message: "El usuario no está loggeado" })
         }
     },
     checkRoles: (...allowedRoles) => (req, res, next) => {

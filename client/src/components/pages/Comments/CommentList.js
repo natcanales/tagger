@@ -42,7 +42,7 @@ class CommentList extends Component {
                         <Modal show={this.state.showModal} onHide={() => this.setState({ showModal: false })}>
                             <Modal.Header> <Modal.Title>Nuevo comentario</Modal.Title> </Modal.Header>
                             <Modal.Body>
-                                <NewComment loggedUser={this.props.loggedUser} closeModal={() => this.setState({ showModal: false })} refreshComments={() => this.loadComments()} />
+                                <NewComment postId={this.props.postId} loggedUser={this.props.loggedUser} closeModal={() => this.setState({ showModal: false })} refreshComments={() => this.loadComments()} />
                             </Modal.Body>
                         </Modal>
                     </>

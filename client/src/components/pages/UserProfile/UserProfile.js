@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { Link } from 'react-router-dom'
 import UserService from '../../../service/user.service'
 import { Container, Spinner } from 'react-bootstrap'
 import UserFormat from './User-format'
@@ -36,6 +37,7 @@ class UserProfile extends Component {
                             <hr />
                             <UserFormat {...this.state.user} />
                             <hr />
+                            <Link to="/tags" className="btn btn-primary t-bgBtn right-marged">Lista de tags</Link>
                             {this.state.user.role === "ADMIN" ? <AdminPage /> : null}
                         </>
                 }

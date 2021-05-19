@@ -25,7 +25,7 @@ class NewComment extends Component {
     handleSubmit(e) {
         e.preventDefault()
         this.postService
-            .newComment(this.state.comment)
+            .newComment(this.props.postId, this.state.comment)
             .then(() => {
                 this.props.closeModal()
                 this.props.refreshComments()

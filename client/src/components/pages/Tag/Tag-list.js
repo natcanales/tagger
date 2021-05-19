@@ -2,6 +2,7 @@ import TagCard from './TagCard'
 
 import { Component } from 'react'
 import AdminService from './../../../service/admin.service'
+import TagService from './../../../service/tag.service'
 
 import { Row, Spinner, Modal, Button } from 'react-bootstrap'
 import NewTag from './NewTag'
@@ -14,6 +15,7 @@ class TagList extends Component {
             showModal: false
         }
         this.adminService = new AdminService()
+        this.tagService = new TagService()
 
     }
 
@@ -22,7 +24,7 @@ class TagList extends Component {
     }
 
     loadTags() {
-        this.adminService
+        this.tagService
             .getAllTags()
             .then(response => {
                 console.log(response)

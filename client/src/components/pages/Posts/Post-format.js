@@ -1,6 +1,8 @@
-import { Card, Container, Row } from 'react-bootstrap'
+import { Button, Card, Container, Row } from 'react-bootstrap'
+import { FaEdit } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
-const PostFormat = ({ title, body, author }) => {
+const PostFormat = ({ _id, title, body, author, authorIsUser }) => {
 
     return (
         <Container>
@@ -10,6 +12,7 @@ const PostFormat = ({ title, body, author }) => {
                         <Card.Title>{title}</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">{author.displayName}</Card.Subtitle>
                         <Card.Body><div dangerouslySetInnerHTML={{ __html: body }} /></Card.Body>
+                        {authorIsUser ? <Link to={`/edit-post/${_id}`}><Button className="editBtn"><FaEdit /></Button></Link> : null}
                     </Card.Body>
                 </Card>
             </Row>

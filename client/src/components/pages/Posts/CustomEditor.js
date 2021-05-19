@@ -1,9 +1,8 @@
-import { EditorState } from 'draft-js'
+import { EditorState, ContentState, convertFromHTML } from 'draft-js'
 import { convertToHTML } from 'draft-convert'
 import { Editor } from 'react-draft-wysiwyg'
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 import { Component } from 'react'
-
 
 // https://blog.logrocket.com/building-rich-text-editors-in-react-using-draft-js-and-react-draft-wysiwyg/
 // https://stackoverflow.com/questions/63015073/how-to-customize-the-style-for-react-draft-wysiwyg
@@ -14,6 +13,16 @@ class CustomEditor extends Component {
         this.state = {
             editorState: EditorState.createEmpty()
         }
+    }
+
+    componentDidMount() {
+        console.log(this.props.postContent)
+        this.setState(
+            {
+                editorState: EditorState.createWithContent(
+                    ContentState
+                        .createFromBlockArray(convertFromHTML(this.props.postContent)))
+            })
     }
 
     onEditorStateChange(editorState) {

@@ -1,6 +1,6 @@
 import React from "react"
 import { Switch } from 'react-router-dom'
-import NewPost from "../pages/Posts/NewPost"
+import PostEdition from "../pages/Posts/PostEdition"
 import PostDetails from "../pages/Posts/PostDetails"
 import Posts from "../pages/Posts/Posts"
 import Signup from "../pages/Signup/Signup"
@@ -20,9 +20,9 @@ const Routes = ({ storeUser, loggedUser }) => {
                 <PrivateRoute exact path="/" loggedUser={loggedUser} hasPermission={true} component={Posts} />
                 <PrivateRoute exact path="/users" loggedUser={loggedUser} hasPermission={loggedUser && loggedUser.role === "ADMIN"} component={Users} />
                 <PrivateRoute exact path="/my-profile" loggedUser={loggedUser} hasPermission={true} component={UserProfile} />
-                <PrivateRoute exact path="/tags" loggedUser={loggedUser} hasPermission={loggedUser && loggedUser.role === "ADMIN"} component={Tags} />
+                <PrivateRoute exact path="/tags" loggedUser={loggedUser} hasPermission={true} component={Tags} />
                 <PrivateRoute path="/posts/:postId" loggedUser={loggedUser} hasPermission={true} component={PostDetails} />
-                <PrivateRoute exact path="/new-post" loggedUser={loggedUser} hasPermission={loggedUser && loggedUser.role === "USER"} component={NewPost} />
+                <PrivateRoute path="/edit-post/:postId" loggedUser={loggedUser} hasPermission={loggedUser && loggedUser.role === "USER"} component={PostEdition} />
             </>)
         </Switch>
     )
