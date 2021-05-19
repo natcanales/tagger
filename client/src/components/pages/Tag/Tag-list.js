@@ -27,7 +27,6 @@ class TagList extends Component {
         this.tagService
             .getAllTags()
             .then(response => {
-                console.log(response)
                 this.setState({ tags: response.data.allTags })
             })
             .catch(err => console.log(err))
@@ -46,7 +45,7 @@ class TagList extends Component {
                 <>
                     {<Button onClick={() => this.setState({ showModal: true })} className="t-bgBtn" size="sm" style={{ marginBottom: '20px' }}>Añadir una tag nueva</Button>}
                     <Row>
-                        {tags.map(elm => <TagCard key={elm._id} tag={{ ...elm }} refreshTags={() => this.loadTags()} />)}
+                        {tags.map(elm => <TagCard key={elm._id} tag={{ ...elm }} refreshTags={() => this.loadTags()} loggedUser={this.props.loggedUser} />)}
                     </Row>
                     {<Button className="goBackBtn" onClick={() => this.props.history.push("/my-profile")} >Volver</Button >}
 

@@ -15,7 +15,7 @@ router.post('/new-tag', isLoggedIn, checkRoles('ADMIN'), (req, res) => {
     Tag
         .create({ name, description })
         .then((newTag) => res.json("Creada correctamente"))
-        .catch(err => res.status(500).json({ status: 500, message: "Tag existente" }, err))
+        .catch(err => res.status(500).json({ status: 500, message: "Tag existente", err }))
 })
 
 
@@ -25,7 +25,7 @@ router.get('/users-list', isLoggedIn, (req, res) => {
     User
         .find({ isActive: true, role: "USER" })
         .then(allUsers => res.json(allUsers))
-        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor" }, err))
+        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor", err }))
 })
 
 
@@ -37,7 +37,7 @@ router.get("/edit-tag/:tagId", (req, res) => {
     Tag
         .findById(tagId)
         .then(tag => tag ? res.json({ tag }) : res.status(404).json({ status: 404, message: "Tag no encontrada" }))
-        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor" }, err))
+        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor", err }))
 })
 
 
@@ -50,7 +50,7 @@ router.put('/edit-tag/:tagId', (req, res) => {
     Tag
         .findByIdAndUpdate(tagId, { name, description }, { new: true })
         .then(updatedTag => res.json({ updatedTag }))
-        .catch(err => res.status(500).json({ status: 500, message: "Error al editar, vuelve a intentarlo" }, err))
+        .catch(err => res.status(500).json({ status: 500, message: "Error al editar, vuelve a intentarlo", err }))
 })
 
 
@@ -62,7 +62,7 @@ router.delete("/delete-user/:userId", (req, res) => {
     User
         .findByIdAndUpdate(userId, { isActive: false })
         .then(() => res.json({ message: "User eliminado correctamente" }))
-        .catch(err => res.status(500).json({ status: 500, message: "Error eliminando este user, vuelve a intentarlo" }, err))
+        .catch(err => res.status(500).json({ status: 500, message: "Error eliminando este user, vuelve a intentarlo", err }))
 
 })
 
@@ -75,7 +75,7 @@ router.delete("/delete-post/:postId", (req, res) => {
     Post
         .findByIdAndDelete(postId)
         .then(() => res.json({ message: "Post eliminado correctamente" }))
-        .catch(err => res.status(500).json({ status: 500, message: "Error eliminando este post, vuelve a intentarlo" }, err))
+        .catch(err => res.status(500).json({ status: 500, message: "Error eliminando este post, vuelve a intentarlo", err }))
 
 })
 
@@ -88,7 +88,7 @@ router.delete("/delete-tag/:tagId", (req, res) => {
     Tag
         .findByIdAndDelete(tagId)
         .then(() => res.json({ message: "Tag eliminada correctamente" }))
-        .catch(err => res.status(500).json({ status: 500, message: "Error eliminando esta tag, vuelve a intentarlo" }, err))
+        .catch(err => res.status(500).json({ status: 500, message: "Error eliminando esta tag, vuelve a intentarlo", err }))
 
 })
 

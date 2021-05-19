@@ -17,7 +17,7 @@ router.post('/new', isLoggedIn, checkRoles('USER'), (req, res) => {
     Post
         .create({ title, body, author: req.session.currentUser._id })
         .then((newPost) => res.json("Creada correctamente"))
-        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor" }, err))
+        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor", err }))
 })
 
 
@@ -32,7 +32,7 @@ router.get('/getAllPosts', isLoggedIn, (req, res) => {
         .then(posts => {
             res.json(posts)
         })
-        .catch(err => res.status(500).json({ code: 500, message: 'Error de servidor' }, err))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error de servidor', err }))
 })
 
 
@@ -46,7 +46,7 @@ router.get("/:postId", (req, res) => {
         .populate("tags")
         .populate("author", ["username", "displayName", "_id", "email"])
         .then(post => post ? res.json(post) : res.status(404).json({ status: 404, message: "Post no encontrado" }))
-        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor" }, err))
+        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor", err }))
 })
 
 
@@ -59,12 +59,12 @@ router.put('/:postId', (req, res) => {
     Post
         .findByIdAndUpdate(postId, { title, body }, { new: true })
         .then(updatedPost => res.json({ updatedPost }))
-        .catch(err => res.status(500).json({ status: 500, message: "Error al editar, vuelve a intentarlo" }, err))
+        .catch(err => res.status(500).json({ status: 500, message: "Error al editar, vuelve a intentarlo", err }))
 })
 
 
 // New comment creation
-router.post('/:postId/new-comment', isLoggedIn, checkRoles('USER'), (req, res) => {
+router.post('/:postId/new-comment', isLoggedIn, (req, res) => {
     const { body } = req.body
     let post = req.params.postId
     post = objectId(post)
@@ -72,7 +72,7 @@ router.post('/:postId/new-comment', isLoggedIn, checkRoles('USER'), (req, res) =
     Comment
         .create({ body, author: req.session.currentUser._id, post })
         .then((newComment) => res.json("Creado correctamente"))
-        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor", err }, err))
+        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor", err }))
 })
 
 // List all comments of a post
@@ -86,7 +86,7 @@ router.get('/:postId/allComments', isLoggedIn, (req, res) => {
         .then(comments => {
             res.json(comments)
         })
-        .catch(err => res.status(500).json({ code: 500, message: 'Error de servidor' }, err))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error de servidor', err }))
 })
 
 module.exports = router

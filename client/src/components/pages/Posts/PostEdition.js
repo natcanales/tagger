@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap'
 import UsersService from '../../../service/user.service'
 import PostService from '../../../service/post.service'
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
+import GenericMsgModal from '../../GenericMsgModal'
 import CustomEditor from './CustomEditor'
 
 // https://blog.logrocket.com/building-rich-text-editors-in-react-using-draft-js-and-react-draft-wysiwyg/
@@ -16,6 +17,10 @@ class PostEdition extends Component {
                 _id: null,
                 title: '',
                 body: ''
+            },
+            error: {
+                exists: false,
+                message: null
             },
             hasLoaded: false
         }
@@ -71,7 +76,24 @@ class PostEdition extends Component {
             .then(() => {
                 this.props.history.push("/")
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                this.setState(
+                    {
+                        error: {
+                            exists: true,
+                            message: "Error al publicar el post. Asegúrate de indicar título y texto."
+                        }
+                    })
+            })
+    }
+
+    resetError() {
+        this.setState({
+            error: {
+                exists: false,
+                message: null
+            }
+        })
     }
 
     render() {
@@ -89,6 +111,8 @@ class PostEdition extends Component {
                             <CustomEditor updateState={data => this.updateState(data)} postContent={this.state.post.body} />
                             <Button className="t-bgBtn" type="submit" >Publicar post</Button>
                         </Form>
+
+                        {this.state.error.exists ? <GenericMsgModal message={this.state.error.message} onClose={() => this.resetError()} /> : null}
                     </>
                 )
             } else {

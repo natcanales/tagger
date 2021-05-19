@@ -60,7 +60,7 @@ const Navigation = ({ loggedUser, storeUser }) => {
 
                             <NavDropdown title="Menú" className="t-link">
                                 {userLinks()}
-                                <span onClick={() => logout()} className="nav-link">Cerrar sesión</span>
+                                <span onClick={() => logout()} className="nav-link logoutBtn">Cerrar sesión</span>
                             </NavDropdown>
                         </>
                 }

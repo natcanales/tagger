@@ -22,7 +22,7 @@ router.get('/:username', isLoggedIn, (req, res) => {
     User
         .find({ username })
         .then(user => user ? res.json(user) : res.status(404).json({ status: 404, message: "Usuario no encontrado" }))
-        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor" }, err))
+        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor", err }))
 })
 
 
@@ -50,7 +50,7 @@ router.put('/add-fav-user/:username', isLoggedIn, (req, res) => {
             req.session.currentUser = user
             res.json({ message: "Añadido a favoritos" })
         })
-        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor" }, err))
+        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor", err }))
 })
 
 
@@ -64,21 +64,22 @@ router.put('/add-fav-tag/:tagname', isLoggedIn, (req, res) => {
             if (tag) {
                 let tagId = new objectId(tag._id)
 
-                User
+                return User
                     .findByIdAndUpdate(
                         req.session.currentUser._id,
                         { $push: { favTags: tagId } },
                         { new: true }
                     )
-                    .then(user => {
-                        req.session.currentUser = user
-                        res.json({ message: "Añadida a favoritos" })
-                    })
+
             } else {
                 res.status(404).json({ status: 404, message: "Usuario no encontrado" })
             }
         })
-        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor" }, err))
+        .then(user => {
+            req.session.currentUser = user
+            res.json({ message: "Añadida a favoritos" })
+        })
+        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor", err }))
 })
 
 

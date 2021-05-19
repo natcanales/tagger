@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { Form, Button } from 'react-bootstrap'
+import GenericMsgModal from '../../GenericMsgModal'
 import AuthService from './../../../service/auth.service'
 
 class LoginForm extends Component {
@@ -8,7 +9,11 @@ class LoginForm extends Component {
         super()
         this.state = {
             username: '',
-            pwd: ''
+            pwd: '',
+            error: {
+                exists: false,
+                message: null
+            }
         }
         this.authService = new AuthService()
     }
@@ -28,26 +33,46 @@ class LoginForm extends Component {
                 this.props.storeUser(response.data)
                 this.props.history.push('/')
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                this.setState(
+                    {
+                        error: {
+                            exists: true,
+                            message: "El usuario o la contraseña son incorrectos."
+                        }
+                    })
+            })
+    }
+
+    resetError() {
+        this.setState({
+            error: {
+                exists: false,
+                message: null
+            }
+        })
     }
 
     render() {
         return (
+            <>
+                <Form onSubmit={e => this.handleSubmit(e)}>
 
-            <Form onSubmit={e => this.handleSubmit(e)}>
+                    <Form.Group controlId="username">
+                        <Form.Label>Nombre de usuario</Form.Label>
+                        <Form.Control type="text" value={this.state.username} onChange={e => this.handleInputChange(e)} name="username" />
+                    </Form.Group>
 
-                <Form.Group controlId="username">
-                    <Form.Label>Nombre de usuario</Form.Label>
-                    <Form.Control type="text" value={this.state.username} onChange={e => this.handleInputChange(e)} name="username" />
-                </Form.Group>
+                    <Form.Group controlId="password">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" value={this.state.pwd} onChange={e => this.handleInputChange(e)} name="pwd" />
+                    </Form.Group>
 
-                <Form.Group controlId="password">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" value={this.state.pwd} onChange={e => this.handleInputChange(e)} name="pwd" />
-                </Form.Group>
+                    <Button className="t-bgBtn" style={{ width: '100%', marginTop: '20px' }} type="submit">Iniciar sesión</Button>
+                </Form>
 
-                <Button className="t-bgBtn" style={{ width: '100%', marginTop: '20px' }} type="submit">Iniciar sesión</Button>
-            </Form>
+                {this.state.error.exists ? <GenericMsgModal message={this.state.error.message} onClose={() => this.resetError()} /> : null}
+            </>
         )
     }
 }

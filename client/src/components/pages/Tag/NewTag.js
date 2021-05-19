@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import AdminService from '../../../service/admin.service'
+import GenericMsgModal from '../../GenericMsgModal'
 
 class NewTag extends Component {
 
@@ -10,6 +11,10 @@ class NewTag extends Component {
             tag: {
                 name: '',
                 description: '',
+            },
+            error: {
+                exists: false,
+                message: null
             }
         }
 
@@ -31,27 +36,48 @@ class NewTag extends Component {
                 this.props.closeModal()
                 this.props.refreshTags()
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                this.setState(
+                    {
+                        error: {
+                            exists: true,
+                            message: "Error al crear la etiqueta. No se admiten nombres duplicados ni vacíos."
+                        }
+                    })
+            })
+
     }
 
+    resetError() {
+        this.setState({
+            error: {
+                exists: false,
+                message: null
+            }
+        })
+    }
 
     render() {
         return (
-            <Form onSubmit={e => this.handleSubmit(e)}>
+            <>
+                <Form onSubmit={e => this.handleSubmit(e)}>
 
-                <Form.Group controlId="name">
-                    <Form.Label>Nombre</Form.Label>
-                    <Form.Control type="text" value={this.state.name} onChange={e => this.handleInputChange(e)} name="name" />
-                </Form.Group>
+                    <Form.Group controlId="name">
+                        <Form.Label>Nombre</Form.Label>
+                        <Form.Control type="text" value={this.state.name} onChange={e => this.handleInputChange(e)} name="name" />
+                    </Form.Group>
 
-                <Form.Group controlId="description">
-                    <Form.Label>Descripción</Form.Label>
-                    <Form.Control type="text" value={this.state.description} onChange={e => this.handleInputChange(e)} name="description" />
-                </Form.Group>
+                    <Form.Group controlId="description">
+                        <Form.Label>Descripción</Form.Label>
+                        <Form.Control type="text" value={this.state.description} onChange={e => this.handleInputChange(e)} name="description" />
+                    </Form.Group>
 
-                <Button className="t-bgBtn" style={{ width: '100%' }} type="submit">Crear tag</Button>
+                    <Button className="t-bgBtn" style={{ width: '100%' }} type="submit">Crear tag</Button>
 
-            </Form>
+                </Form>
+
+                {this.state.error.exists ? <GenericMsgModal message={this.state.error.message} onClose={() => this.resetError()} /> : null}
+            </>
         )
     }
 }

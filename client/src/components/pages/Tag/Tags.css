@@ -1,7 +1,24 @@
 .goBackBtn,
+.goBackBtn:hover {
+    margin-top: 10px;
+    background-color: rgb(185, 114, 47);
+}
+
+.editBtn,
+.editBtn:hover {
+    background-color: teal;
+}
+
+.goBackBtn,
 .goBackBtn:hover,
 .editBtn,
 .editBtn:hover {
     float: right;
-    background-color: teal;
+}
+
+.favBtn, 
+.favBtn:hover,
+.favBtn:focus {
+    float: right;
+    background-color: rgb(169, 81, 228);
 }

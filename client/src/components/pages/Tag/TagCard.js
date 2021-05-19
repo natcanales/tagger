@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { Card, Col, Button } from 'react-bootstrap'
-import { FaEdit } from 'react-icons/fa'
+import { FaEdit, FaStar } from 'react-icons/fa'
 import AdminService from '../../../service/admin.service'
 import './Tags.css'
 
@@ -20,7 +20,6 @@ class TagCard extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.tag)
         this.setState({ tag: this.props.tag })
     }
 
@@ -34,13 +33,22 @@ class TagCard extends Component {
     }
 
     render() {
+
+        const buttons = () => {
+            if (this.props.loggedUser.role === "ADMIN") {
+                return <Button className="editBtn" onClick={() => this.handleSubmit(this.state.tag.tagId)}><FaEdit /></Button>
+            } else {
+                return <Button className="favBtn" onClick={() => this.handleSubmit(this.state.tag.tagId)}><FaStar /></Button>
+            }
+        }
+
         return (
             <Col md={4} >
                 <Card>
                     <Card.Body>
                         <Card.Title>{this.state.tag.name}</Card.Title>
                         <Card.Text>{this.state.tag.description}</Card.Text>
-                        <Button className="editBtn" onClick={() => this.handleSubmit(this.state.tag.tagId)}><FaEdit /></Button>
+                        {buttons()}
                     </Card.Body>
                 </Card>
             </Col>
