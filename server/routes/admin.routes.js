@@ -29,16 +29,6 @@ router.get('/users-list', isLoggedIn, (req, res) => {
 })
 
 
-// Tags list
-router.get('/tag-list', (req, res) => {
-
-    Tag
-        .find()
-        .then(allTags => res.json({ allTags }))
-        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor" }, err))
-})
-
-
 // Get a tag data
 router.get("/edit-tag/:tagId", (req, res) => {
 

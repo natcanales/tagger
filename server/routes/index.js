@@ -5,4 +5,5 @@ module.exports = app => {
     app.use('/api/admin', require('./admin.routes.js'))
     app.use('/api/user', require('./user.routes.js'))
     app.use('/api/post', require('./post.routes.js'))
+    app.use('/api/tag', require('./tag.routes.js'))
 }
