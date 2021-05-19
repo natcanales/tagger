@@ -25,7 +25,7 @@ class TagCard extends Component {
 
     handleSubmit(tagId) {
         this.adminService
-            .editTag(this.state.tag._id)
+            .editTag(this.state.tag)
             .then(() => {
                 this.props.refreshTags()
             })
@@ -36,7 +36,7 @@ class TagCard extends Component {
 
         const buttons = () => {
             if (this.props.loggedUser.role === "ADMIN") {
-                return <Button className="editBtn" onClick={() => this.handleSubmit(this.state.tag.tagId)}><FaEdit /></Button>
+                return <Button className="editBtn" onClick={() => this.props.showEditModal()}><FaEdit /></Button>
             } else {
                 return <Button className="favBtn" onClick={() => this.handleSubmit(this.state.tag.tagId)}><FaStar /></Button>
             }

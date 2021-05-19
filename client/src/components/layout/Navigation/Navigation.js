@@ -25,6 +25,7 @@ const Navigation = ({ loggedUser, storeUser }) => {
                 <>
                     <Link to="/posts" className="nav-link"><p>Mis posts</p></Link>
                     <Link to="/edit-post/new" className="nav-link"><p>Post nuevo</p></Link>
+                    <Link to="/tags" className="nav-link"><p>Lista de tags</p></Link>
                 </>)
         } else {
             return (

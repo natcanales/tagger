@@ -37,7 +37,6 @@ class UserProfile extends Component {
                             <hr />
                             <UserFormat {...this.state.user} />
                             <hr />
-                            <Link to="/tags" className="btn btn-primary t-bgBtn right-marged">Lista de tags</Link>
                             {this.state.user.role === "ADMIN" ? <AdminPage /> : null}
                         </>
                 }

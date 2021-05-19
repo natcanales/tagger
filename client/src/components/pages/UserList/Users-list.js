@@ -42,7 +42,6 @@ class UsersList extends Component {
                     <Row>
                         {users.map(elm => <UserCard key={elm._id} user={{ ...elm }} refreshUsers={() => this.loadUsers()} />)}
                     </Row>
-                    {<Button onClick={() => this.props.history.push("/my-profile")} className="goBackBtn">Volver</Button>}
                 </>
 
         )

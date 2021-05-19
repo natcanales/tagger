@@ -10,7 +10,7 @@ class AdminService {
 
     newTag = data => this.app.post('/new-tag', data)
     getOneTag = tagId => this.app.get(`/edit-tag/${tagId}`)
-    editTag = data => this.app.put(`/${data.tagId}`, data)
+    editTag = data => this.app.put(`/edit-tag/${data._id}`, data)
     getAllUsers = () => this.app.get('/users-list')
     deleteOneUser = userId => this.app.delete(`/delete-user/${userId}`)
     deleteOnePost = postId => this.app.delete(`/delete-post/${postId}`)
