@@ -7,7 +7,7 @@ const PostFormat = ({ _id, title, body, author, authorIsUser }) => {
     return (
         <Container>
             <Row>
-                <Card>
+                <Card className="t-card">
                     <Card.Body>
                         <Card.Title>{title}</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">

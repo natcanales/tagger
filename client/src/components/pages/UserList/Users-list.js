@@ -2,7 +2,7 @@ import { Component } from 'react'
 import AdminService from './../../../service/admin.service'
 import UserCard from './UserCard'
 
-import { Row, Spinner } from 'react-bootstrap'
+import { Row, Spinner, Button } from 'react-bootstrap'
 
 class UsersList extends Component {
 
@@ -42,6 +42,7 @@ class UsersList extends Component {
                     <Row>
                         {users.map(elm => <UserCard key={elm._id} user={{ ...elm }} refreshUsers={() => this.loadUsers()} />)}
                     </Row>
+                    <Button onClick={this.props.history.goBack} className="btn goBackBtn btn-primary">Volver</Button>
                 </>
 
         )

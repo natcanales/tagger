@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import PostService from '../../../service/post.service'
-import { Container, Spinner } from 'react-bootstrap'
+import { Button, Container, Spinner } from 'react-bootstrap'
 import PostFormat from './Post-format'
 import Comments from './../Comments/Comments'
 
@@ -34,6 +34,7 @@ class PostDetails extends Component {
                         :
                         <>
                             <PostFormat {...this.state.post} authorIsUser={this.props.loggedUser._id === this.state.post.author._id} />
+                            <Button onClick={this.props.history.goBack} className="btn goBackBtn btn-primary">Volver</Button>
                             <Comments loggedUser={this.props.loggedUser} postId={this.state.post._id} />
                         </>
                 }

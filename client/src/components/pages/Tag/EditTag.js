@@ -37,7 +37,6 @@ class EditTag extends Component {
         e.preventDefault()
 
         let promise
-        console.log(this.state.tag)
 
         if (this.state.isNew) {
             promise = this.adminService.newTag(this.state.tag)

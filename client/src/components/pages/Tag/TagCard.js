@@ -68,7 +68,7 @@ class TagCard extends Component {
 
         return (
             <Col md={4} >
-                <Card>
+                <Card className="t-card">
                     <Card.Body>
                         <Card.Title>{this.state.tag.name}</Card.Title>
                         <Card.Text>{this.state.tag.description}</Card.Text>

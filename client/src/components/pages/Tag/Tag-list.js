@@ -90,6 +90,8 @@ class TagList extends Component {
                             isFav={this.props.onlyFav} />)}
                     </Row>
 
+                    <Button onClick={this.props.history.goBack} className="btn goBackBtn btn-primary">Volver</Button>
+
                     <Modal show={this.state.showModal} onHide={() => this.setState({ showModal: false })}>
                         <Modal.Header> <Modal.Title>{this.state.isCreationModal ? "Nueva" : "Editar"} tag</Modal.Title> </Modal.Header>
                         <Modal.Body>

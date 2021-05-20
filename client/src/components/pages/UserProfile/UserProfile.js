@@ -1,11 +1,12 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
 import UserService from '../../../service/user.service'
-import { Container, Spinner } from 'react-bootstrap'
+import { Button, Container, Spinner } from 'react-bootstrap'
 import UserFormat from './User-format'
 import AdminPage from '../Admin/Admin-page'
 import PostService from '../../../service/post.service'
 import PostCard from '../Posts/PostCard'
+import './../../App.css'
 
 class UserProfile extends Component {
 
@@ -66,6 +67,7 @@ class UserProfile extends Component {
                         <>
                             <h1>Perfil de {this.state.user.username}</h1>
                             <UserFormat {...this.state.user} />
+                            <Button onClick={this.props.history.goBack} className="btn goBackBtn btn-primary">Volver</Button>
                             <hr />
                             {conditionalBtn()}
                             <div className="posts-list">

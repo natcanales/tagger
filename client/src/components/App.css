@@ -10,6 +10,10 @@
     margin: 10px auto;
 }
 
+.t-card {
+    border-radius: 1.5rem;
+}
+
 .t-bgBtn,
 .t-bgBtn:hover,
 .t-bgBtn:focus {

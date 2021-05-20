@@ -6,7 +6,7 @@ const UserFormat = ({ displayName, username, image, email }) => {
         <Container>
             <Row>
                 <Col >
-                    <Card>
+                    <Card className="t-card">
                         <Card.Body>
                             <Card.Img>{image}</Card.Img>
                             <Card.Title>{username}</Card.Title>

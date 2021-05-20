@@ -5,7 +5,7 @@ const PostCard = ({ _id, title, author, body, history }) => {
 
     return (
         <Link to={`/posts/${_id}`} className="no-decor">
-            <Card className="marged t-bgColor">
+            <Card className="marged t-bgColor t-card">
                 <Card.Body className="lat-padded">
                     <Card.Title className="big">{title}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{author.displayName}</Card.Subtitle>

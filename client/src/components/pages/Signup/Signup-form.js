@@ -1,7 +1,9 @@
 import { Component } from 'react'
 import { Form, Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import AuthService from './../../../service/auth.service'
 import GenericMsgModal from '../../GenericMsgModal'
+import './../../App.css'
 
 class SignupForm extends Component {
 
@@ -87,7 +89,8 @@ class SignupForm extends Component {
                         <Form.Control type="date" value={this.state.birthdate} onChange={e => this.handleInputChange(e)} name="birthdate" />
                     </Form.Group>
 
-                    <Button className="t-bgBtn" style={{ width: '100%', marginTop: '20px' }} type="submit">¡Vamos allá!</Button>
+                    <Button className="t-bgBtn" style={{ width: '100%' }} type="submit">¡Vamos allá!</Button>
+                    <Link className="btn t-bgBtn btn-primary t-bgBtn" style={{ width: '100%' }} to={'/login'}>Sí que soy tagger</Link>
                 </Form>
                 {this.state.error.exists ? <GenericMsgModal message={this.state.error.message} onClose={() => this.resetError()} /> : null}
             </>

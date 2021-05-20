@@ -21,7 +21,6 @@ class UserCard extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.user)
         this.setState({ user: this.props.user })
     }
 
@@ -37,7 +36,7 @@ class UserCard extends Component {
     render() {
         return (
             <Col md={3} >
-                <Card>
+                <Card className="t-card">
                     <Card.Body>
                         <Card.Title>
                             <Link className="black" to={`/user/${this.state.user.username}`}>{this.state.user.username}</Link>

@@ -110,6 +110,7 @@ class PostEdition extends Component {
 
                             <CustomEditor updateState={data => this.updateState(data)} postContent={this.state.post.body} />
                             <Button className="t-bgBtn" type="submit" >Publicar post</Button>
+                            <Button onClick={this.props.history.goBack} className="btn goBackBtn btn-primary">Volver</Button>
                         </Form>
 
                         {this.state.error.exists ? <GenericMsgModal message={this.state.error.message} onClose={() => this.resetError()} /> : null}
