@@ -1,6 +1,6 @@
 import axios from "axios"
 
-class AdminService {
+class TagService {
     constructor() {
         this.app = axios.create({
             baseURL: `${process.env.REACT_APP_BASE_URL}/tag`,
@@ -13,4 +13,4 @@ class AdminService {
 
 }
 
-export default AdminService
+export default TagService

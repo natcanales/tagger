@@ -46,3 +46,17 @@
     background-color: white;
     padding: 10px 20px;
 }
+
+.t-taglabel {
+    padding: 0.5em 0.7em;
+    background-color: #eee;
+    font-weight: bold;
+    font-style: italic;
+    font-size: smaller;
+    border-radius: 5px;
+    margin-right: 0.5em;
+}
+
+.t-taglabel:first-child {
+    margin-left: 1em;
+}

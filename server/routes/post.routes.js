@@ -12,10 +12,15 @@ const Comment = require("./../models/comment.model")
 
 // New post creation
 router.post('/new', isLoggedIn, checkRoles('USER'), (req, res) => {
-    const { title, body } = req.body
+    const { title, body, tags } = req.body
+    let tagObjects = []
+
+    tags.forEach(elem => {
+        tagObjects.push(objectId(elem))
+    })
 
     Post
-        .create({ title, body, author: req.session.currentUser._id })
+        .create({ title, body, tags: tagObjects, author: req.session.currentUser._id })
         .then((newPost) => res.json("Creada correctamente"))
         .catch(err => res.status(500).json({ status: 500, message: "Error de servidor", err }))
 })
@@ -48,6 +53,26 @@ router.get('/getAllPosts', isLoggedIn, (req, res) => {
 })
 
 
+// List all posts by tags
+router.post('/getPostsByTags', isLoggedIn, (req, res) => {
+    const { tags } = req.body
+    let tagObjects = []
+
+    tags.forEach(elem => {
+        tagObjects.push(objectId(elem._id))
+    })
+    Post
+        .find({ "tags": { $in: tagObjects } })
+        .sort({ "createdAt": -1 })
+        .populate("tags")
+        .populate("author", ["username", "_id", "displayName"])
+        .then(posts => {
+            res.json(posts)
+        })
+        .catch(err => res.status(500).json({ code: 500, message: 'Error de servidor', err }))
+})
+
+
 // Get a post data
 router.get("/:postId", (req, res) => {
 
@@ -66,10 +91,15 @@ router.get("/:postId", (req, res) => {
 router.put('/:postId', (req, res) => {
 
     const postId = req.params.postId
-    const { title, body } = req.body
+    const { title, body, tags } = req.body
+    let tagObjects = []
+
+    tags.forEach(elem => {
+        tagObjects.push(objectId(elem))
+    })
 
     Post
-        .findByIdAndUpdate(postId, { title, body }, { new: true })
+        .findByIdAndUpdate(postId, { title, body, tags: tagObjects }, { new: true })
         .then(updatedPost => res.json({ updatedPost }))
         .catch(err => res.status(500).json({ status: 500, message: "Error al editar, vuelve a intentarlo", err }))
 })

@@ -2,11 +2,12 @@ import TagCard from './TagCard'
 
 import { Component } from 'react'
 import AdminService from './../../../service/admin.service'
-import TagService from './../../../service/tag.service'
 
 import { Row, Spinner, Modal, Button } from 'react-bootstrap'
 import EditTag from './EditTag'
+
 import UserService from '../../../service/user.service'
+import TagService from './../../../service/tag.service'
 
 class TagList extends Component {
     constructor() {

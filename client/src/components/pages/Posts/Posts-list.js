@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import PostService from './../../../service/post.service'
+import UserService from './../../../service/user.service'
 import PostCard from './PostCard'
 import { Link } from 'react-router-dom'
 import './Posts.css'
@@ -14,6 +15,7 @@ class PostsList extends Component {
             posts: undefined
         }
         this.postService = new PostService()
+        this.userService = new UserService()
     }
 
     componentDidMount() {
@@ -21,10 +23,18 @@ class PostsList extends Component {
     }
 
     loadPosts() {
-        this.postService
-            .getAllPosts()
+        this.userService
+            .getFavTags()
+            .then(tags => {
+                if (tags.data.length) {
+                    return this.postService.getPostsByTags({ tags: tags.data })
+                } else {
+                    return this.postService.getAllPosts()
+                }
+            })
             .then(response => this.setState({ posts: response.data }))
             .catch(err => console.log(err))
+
     }
 
     render() {

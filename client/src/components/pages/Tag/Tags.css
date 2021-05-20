@@ -21,3 +21,8 @@
 .removeFavBtn {
     float: right;
 }
+
+.tag-selection__menu, .tag-selection__menu * {
+    background: white;
+    z-index: 9000;
+}

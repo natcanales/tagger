@@ -16,7 +16,6 @@ class CustomEditor extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.postContent)
         this.setState(
             {
                 editorState: EditorState.createWithContent(
