@@ -1,4 +1,4 @@
-<img src="https://res.cloudinary.com/dk1u2xsjk/image/upload/v1621539827/Screenshot_from_2021-05-20_17-27-41_nzgtde.png" alt="tagger logo" width="80">
+<img src="https://res.cloudinary.com/dk1u2xsjk/image/upload/v1621539827/Screenshot_from_2021-05-20_17-27-41_nzgtde.png" alt="tagger logo" width="120">
 
 # Tagger
 
