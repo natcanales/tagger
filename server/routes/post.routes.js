@@ -21,6 +21,18 @@ router.post('/new', isLoggedIn, checkRoles('USER'), (req, res) => {
 })
 
 
+// Get posts by author
+router.get('/getByAuthor/:userId', (req, res) => {
+    const authorId = objectId(req.params.userId)
+
+    Post
+        .find({ author: authorId })
+        .sort({ "createdAt": -1 })
+        .then(posts => res.json(posts))
+        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor", err }))
+})
+
+
 // List all posts
 router.get('/getAllPosts', isLoggedIn, (req, res) => {
 

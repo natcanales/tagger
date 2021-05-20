@@ -16,3 +16,13 @@
     background-color: rgb(185, 114, 47);
     border: transparent;
 }
+
+.grey,
+.grey:hover {
+    color: grey;
+}
+
+.black,
+.black:hover {
+    color: black;
+}

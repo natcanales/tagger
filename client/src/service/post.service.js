@@ -10,6 +10,7 @@ class PostService {
 
     newPost = data => this.app.post('/new', data)
     getOnePost = postId => this.app.get(`/${postId}`)
+    getByAuthor = userId => this.app.get(`/getByAuthor/${userId}`)
     getAllPosts = () => this.app.get('/getAllPosts')
     editPost = data => this.app.put(`/${data._id}`, data)
     newComment = (postId, data) => this.app.post(`/${postId}/new-comment`, data)

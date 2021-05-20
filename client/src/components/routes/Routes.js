@@ -19,8 +19,10 @@ const Routes = ({ storeUser, loggedUser }) => {
                 <PublicRoute exact path="/signup" loggedUser={loggedUser} storeUser={storeUser} component={Signup} />
                 <PrivateRoute exact path="/" loggedUser={loggedUser} hasPermission={true} component={Posts} />
                 <PrivateRoute exact path="/users" loggedUser={loggedUser} hasPermission={loggedUser && loggedUser.role === "ADMIN"} component={Users} />
-                <PrivateRoute exact path="/my-profile" loggedUser={loggedUser} hasPermission={true} component={UserProfile} />
-                <PrivateRoute exact path="/tags" loggedUser={loggedUser} hasPermission={true} component={Tags} />
+                <PrivateRoute exact path="/my-profile" loggedUser={loggedUser} hasPermission={true} isOwnProfile={true} component={UserProfile} />
+                <PrivateRoute exact path="/user/:username" loggedUser={loggedUser} hasPermission={true} isOwnProfile={false} component={UserProfile} />
+                <PrivateRoute exact path="/tags" loggedUser={loggedUser} hasPermission={true} onlyFav={false} component={Tags} />
+                <PrivateRoute exact path="/fav-tags" loggedUser={loggedUser} hasPermission={true} onlyFav={true} component={Tags} />
                 <PrivateRoute path="/posts/:postId" loggedUser={loggedUser} hasPermission={true} component={PostDetails} />
                 <PrivateRoute path="/edit-post/:postId" loggedUser={loggedUser} hasPermission={loggedUser && loggedUser.role === "USER"} component={PostEdition} />
             </>)

@@ -2,7 +2,7 @@ import { Component } from 'react'
 import AdminService from './../../../service/admin.service'
 import UserCard from './UserCard'
 
-import { Row, Spinner, Button } from 'react-bootstrap'
+import { Row, Spinner } from 'react-bootstrap'
 
 class UsersList extends Component {
 

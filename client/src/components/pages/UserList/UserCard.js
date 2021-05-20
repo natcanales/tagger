@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { Card, Col, Button } from 'react-bootstrap'
 import { FaTrashAlt } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 import AdminService from '../../../service/admin.service'
 import './Users.css'
 
@@ -38,7 +39,9 @@ class UserCard extends Component {
             <Col md={3} >
                 <Card>
                     <Card.Body>
-                        <Card.Title>{this.state.user.username}</Card.Title>
+                        <Card.Title>
+                            <Link className="black" to={`/user/${this.state.user.username}`}>{this.state.user.username}</Link>
+                        </Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">{this.state.user.displayName}</Card.Subtitle>
                         <Button className="removeUserBtn btn-danger" onClick={() => this.handleSubmit(this.state.user.userId)}><FaTrashAlt /></Button>
                     </Card.Body>

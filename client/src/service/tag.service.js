@@ -9,6 +9,8 @@ class AdminService {
     }
 
     getAllTags = () => this.app.get('/tag-list')
+    getAvailableTags = () => this.app.get('/available-tag-list')
+
 }
 
 export default AdminService

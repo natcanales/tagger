@@ -10,7 +10,9 @@ const PostFormat = ({ _id, title, body, author, authorIsUser }) => {
                 <Card>
                     <Card.Body>
                         <Card.Title>{title}</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">{author.displayName}</Card.Subtitle>
+                        <Card.Subtitle className="mb-2 text-muted">
+                            <Link className="grey" to={`/user/${author.username}`}>{author.displayName}</Link>
+                        </Card.Subtitle>
                         <Card.Body><div dangerouslySetInnerHTML={{ __html: body }} /></Card.Body>
                         {authorIsUser ? <Link to={`/edit-post/${_id}`}><Button className="editBtn"><FaEdit /></Button></Link> : null}
                     </Card.Body>

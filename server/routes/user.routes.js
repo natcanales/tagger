@@ -5,6 +5,7 @@ const User = require('../models/user.model')
 const Tag = require('../models/tag.model')
 
 const mongoose = require('mongoose')
+const { objectId } = require('../utils')
 
 const { isLoggedIn } = require('./../middlewares')
 
@@ -15,12 +16,23 @@ router.get('/current-user', isLoggedIn, (req, res) => {
 })
 
 
+// Fav tags list
+router.get('/fav-tag-list', (req, res) => {
+    console.log(req.session.currentUser._id)
+    User
+        .findById(req.session.currentUser._id)
+        .populate("favTags")
+        .then(user => res.json(user.favTags))
+        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor", err }))
+})
+
+
 // Other user profile
 router.get('/:username', isLoggedIn, (req, res) => {
     const username = req.params.username
 
     User
-        .find({ username })
+        .findOne({ username })
         .then(user => user ? res.json(user) : res.status(404).json({ status: 404, message: "Usuario no encontrado" }))
         .catch(err => res.status(500).json({ status: 500, message: "Error de servidor", err }))
 })
@@ -34,7 +46,7 @@ router.put('/add-fav-user/:username', isLoggedIn, (req, res) => {
         .findOne({ username })
         .then(user => {
             if (user) {
-                let userId = new objectId(user._id)
+                let userId = objectId(user._id)
 
                 return User
                     .findByIdAndUpdate(
@@ -62,7 +74,7 @@ router.put('/add-fav-tag/:tagname', isLoggedIn, (req, res) => {
         .findOne({ name })
         .then(tag => {
             if (tag) {
-                let tagId = new objectId(tag._id)
+                let tagId = objectId(tag._id)
 
                 return User
                     .findByIdAndUpdate(
@@ -72,12 +84,41 @@ router.put('/add-fav-tag/:tagname', isLoggedIn, (req, res) => {
                     )
 
             } else {
-                res.status(404).json({ status: 404, message: "Usuario no encontrado" })
+                res.status(404).json({ status: 404, message: "Tag no encontrada" })
             }
         })
         .then(user => {
             req.session.currentUser = user
             res.json({ message: "Añadida a favoritos" })
+        })
+        .catch(err => res.status(500).json({ status: 500, message: "Error de servidor", err }))
+})
+
+
+// Remove a fav tag
+router.put('/remove-fav-tag/:tagname', isLoggedIn, (req, res) => {
+    const name = req.params.tagname
+
+    Tag
+        .findOne({ name })
+        .then(tag => {
+            if (tag) {
+                let tagId = objectId(tag._id)
+
+                return User
+                    .findByIdAndUpdate(
+                        req.session.currentUser._id,
+                        { $pull: { favTags: tagId } },
+                        { new: true }
+                    )
+
+            } else {
+                res.status(404).json({ status: 404, message: "Tag no encontrada" })
+            }
+        })
+        .then(user => {
+            req.session.currentUser = user
+            res.json({ message: "Eliminada de favoritos" })
         })
         .catch(err => res.status(500).json({ status: 500, message: "Error de servidor", err }))
 })

@@ -7,7 +7,7 @@ const PrivateRoute = ({ component: Comp, loggedUser, hasPermission, path, ...res
             path={path}
             {...rest}
             render={(props) => {
-                return loggedUser && hasPermission ? <Comp {...props} loggedUser={loggedUser} history={props.history} /> : <Redirect to="/login" />
+                return loggedUser && hasPermission ? <Comp {...props} loggedUser={loggedUser} history={props.history} {...rest} /> : <Redirect to="/login" />
             }}
         />
     )

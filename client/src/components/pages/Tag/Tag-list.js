@@ -6,6 +6,7 @@ import TagService from './../../../service/tag.service'
 
 import { Row, Spinner, Modal, Button } from 'react-bootstrap'
 import EditTag from './EditTag'
+import UserService from '../../../service/user.service'
 
 class TagList extends Component {
     constructor() {
@@ -22,6 +23,7 @@ class TagList extends Component {
         }
         this.adminService = new AdminService()
         this.tagService = new TagService()
+        this.userService = new UserService()
 
     }
 
@@ -30,11 +32,20 @@ class TagList extends Component {
     }
 
     loadTags() {
-        this.tagService
-            .getAllTags()
+        let promise
+
+        if (this.props.onlyFav) {
+            promise = this.userService.getFavTags()
+        } else if (this.props.loggedUser.role === "ADMIN") {
+            promise = this.tagService.getAllTags()
+        } else {
+            promise = this.tagService.getAvailableTags()
+        }
+
+        promise
             .then(response => {
                 this.setState({ tags: [] })
-                this.setState({ tags: response.data.allTags })
+                this.setState({ tags: response.data })
             })
             .catch(err => console.log(err))
     }
@@ -75,7 +86,8 @@ class TagList extends Component {
                             tag={{ ...elm }}
                             refreshTags={() => this.loadTags()}
                             loggedUser={this.props.loggedUser}
-                            showEditModal={() => this.showEditModal({ ...elm })} />)}
+                            showEditModal={() => this.showEditModal({ ...elm })}
+                            isFav={this.props.onlyFav} />)}
                     </Row>
 
                     <Modal show={this.state.showModal} onHide={() => this.setState({ showModal: false })}>

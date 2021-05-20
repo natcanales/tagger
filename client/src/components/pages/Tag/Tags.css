@@ -22,3 +22,7 @@
     float: right;
     background-color: rgb(169, 81, 228);
 }
+
+.removeFavBtn {
+    float: right;
+}

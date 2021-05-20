@@ -34,7 +34,6 @@ class PostDetails extends Component {
                         :
                         <>
                             <PostFormat {...this.state.post} authorIsUser={this.props.loggedUser._id === this.state.post.author._id} />
-                            <hr />
                             <Comments loggedUser={this.props.loggedUser} postId={this.state.post._id} />
                         </>
                 }

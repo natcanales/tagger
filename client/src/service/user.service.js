@@ -9,9 +9,11 @@ class UserService {
     }
 
     myProfile = () => this.app.get('/current-user')
-    seeOtherProfile = userId => this.app.get(`/${userId}`)
+    seeOtherProfile = username => this.app.get(`/${username}`)
     addFavUser = userId => this.app.put(`/add-fav-user/${userId}`)
-    addFavTag = tagId => this.app.put(`/add-fav-tag${tagId}`)
+    addFavTag = tagName => this.app.put(`/add-fav-tag/${tagName}`)
+    getFavTags = () => this.app.get('/fav-tag-list')
+    removeFavTag = tagName => this.app.put(`/remove-fav-tag/${tagName}`)
 
 }
 
