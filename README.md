@@ -1,4 +1,4 @@
-![tagger logo](https://res.cloudinary.com/dk1u2xsjk/image/upload/v1621539827/Screenshot_from_2021-05-20_17-27-41_nzgtde.png)
+![tagger logo](https://res.cloudinary.com/dk1u2xsjk/image/upload/v1621539827/Screenshot_from_2021-05-20_17-27-41_nzgtde.png =250x)
 
 
 # Tagger
