@@ -28,7 +28,7 @@ const userSchema = new Schema({
         required: [true, 'Debes introducir una contraseña']
     },
 
-    birth: {
+    birthdate: {
         type: Date,
         required: [true, 'Debes introducir tu cumpleaños']
     },

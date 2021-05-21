@@ -26,6 +26,7 @@ class SignupForm extends Component {
 
     handleInputChange(e) {
         const { name, value } = e.target
+
         if (name === "birthdate") {
             let diff = Date.now() - new Date(value).getTime()
             let age = Math.abs(new Date(diff).getUTCFullYear() - 1970)
@@ -39,9 +40,9 @@ class SignupForm extends Component {
                         }
                     })
                 return
-
             }
         }
+
         this.setState({ [name]: value })
     }
 
