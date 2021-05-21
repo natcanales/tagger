@@ -4,6 +4,7 @@
 # Tagger
 
 Tagger is a social network for sharing posts with assigned tags.
+If you only want to see how it is, feel free to check the [**tagger**](https://ih-tagger.herokuapp.com/) website!
 
 
 ## Requirements

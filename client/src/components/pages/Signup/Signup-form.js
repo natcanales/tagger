@@ -26,6 +26,22 @@ class SignupForm extends Component {
 
     handleInputChange(e) {
         const { name, value } = e.target
+        if (name === "birthdate") {
+            let diff = Date.now() - new Date(value).getTime()
+            let age = Math.abs(new Date(diff).getUTCFullYear() - 1970)
+
+            if (age < 16) {
+                this.setState(
+                    {
+                        error: {
+                            exists: true,
+                            message: `Necesitas tener 16 años o más para ser un tagger.`
+                        }
+                    })
+                return
+
+            }
+        }
         this.setState({ [name]: value })
     }
 

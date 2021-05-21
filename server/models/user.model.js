@@ -29,8 +29,8 @@ const userSchema = new Schema({
     },
 
     birth: {
-        type: Date
-        // min: 16 (check at back)
+        type: Date,
+        required: [true, 'Debes introducir tu cumpleaños']
     },
 
     favPosts: [{
