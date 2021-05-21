@@ -1,5 +1,4 @@
-![tagger logo](https://lh6.googleusercontent.com/NfzHMUIipZXxBN7VD0BV-wI9V0gVxgGuC0bFqOKIheFYabtw2PbYChGSs-sDPc0KoWpjO52ZJvd3hwmszSP_=w1920-h913)
-
+<img src="https://res.cloudinary.com/dk1u2xsjk/image/upload/v1621539827/Screenshot_from_2021-05-20_17-27-41_nzgtde.png" alt="tagger logo" width="130">
 
 # Tagger
 
